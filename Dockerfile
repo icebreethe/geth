@@ -1,6 +1,6 @@
 FROM alpine
 LABEL version="1.9.25"
-VOLUME ["~/geth"]
+VOLUME ["/data/geth"]
 ENV destination=stats.rinkeby.io
 ARG destination=stats.rinkeby.io
 ENV nodename=GethNodeInstance
@@ -14,6 +14,6 @@ RUN apk upgrade
 RUN apk add geth
 
 CMD mkdir ~/geth
-CMD ["/bin/sh", "-c", "geth --data-dir ~/geth --syncmode=$syncmode --${network} --ethstats=\"${nodename}:Respect my authoritah!@${destination}\""]
+CMD ["/bin/sh", "-c", "geth --datadir /data/geth --syncmode=$syncmode --${network} --ethstats=\"${nodename}:Respect my authoritah!@${destination}\""]
 
 EXPOSE 3002
